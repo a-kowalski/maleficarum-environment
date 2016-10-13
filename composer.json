@@ -6,7 +6,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Maleficarum\\Config\\": "src/Environment/"
+            "Maleficarum\\Environment\\": "src/Environment/"
         }
     },
     "repositories": [
