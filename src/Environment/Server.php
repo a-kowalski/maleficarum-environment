@@ -12,9 +12,9 @@ class Server implements \ArrayAccess
     /**
      * Internal storage for environmental variables.
      *
-     * @var array|null
+     * @var array
      */
-    private $data = null;
+    private $data = [];
 
     /* ------------------------------------ Magic methods START ---------------------------------------- */
     /**
@@ -32,57 +32,76 @@ class Server implements \ArrayAccess
      * This method tries to return set environment for both CLI and FPM context
      *
      * @return string
-     * 
+     *
      * @throws \RuntimeException
      */
-    public function getCurrentEnvironment() {
-        if (array_key_exists('APPLICATION_ENVIRONMENT', $this->data)) {
-            return $this->data['APPLICATION_ENVIRONMENT'];
+    public function getCurrentEnvironment() : string {
+        if (empty($this->data['APPLICATION_ENVIRONMENT'])) {
+            throw new \RuntimeException(sprintf('Application environment has not been set! \%s::getCurrentEnvironment()', static::class));
         }
 
-        throw new \RuntimeException('Application environment has not been set!!! \Maleficarum\Environment\Server::getCurrentEnvironment()');
+        return $this->data['APPLICATION_ENVIRONMENT'];
     }
     /* ------------------------------------ Server methods END ----------------------------------------- */
 
     /* ------------------------------------ ArrayAccess methods START ---------------------------------- */
     /**
-     * @see ArrayAccess::offsetExists()
+     * Checks if the given key exists in the array
+     *
+     * @see \ArrayAccess::offsetExists()
+     *
+     * @param mixed $offset
+     *
+     * @return bool
      */
-    public function offsetExists($offset) {
+    public function offsetExists($offset) : bool {
         return array_key_exists($offset, $this->data);
     }
 
     /**
-     * This method will always throw a RuntimeException. It's not allowed to set env data from the execution context.
+     * Gets the element with the given key
      *
-     * @see ArrayAccess::offsetUnset()
-     * 
-     * @throws \RuntimeException
-     */
-    public function offsetUnset($offset) {
-        throw new \RuntimeException('Environment data is read-only. \Maleficarum\Environment\Server::offsetUnset()');
-    }
-
-    /**
-     * @see ArrayAccess::offsetGet()
+     * @see \ArrayAccess::offsetGet()
+     *
+     * @param mixed $offset
+     *
+     * @return mixed
      */
     public function offsetGet($offset) {
-        if (array_key_exists($offset, $this->data)) {
-            return $this->data[$offset];
-        } else {
+        if (!$this->offsetExists($offset)) {
             return null;
         }
+
+        return $this->data[$offset];
     }
 
     /**
      * This method will always throw a RuntimeException. It's not allowed to set env data from the execution context.
      *
-     * @see ArrayAccess::offsetSet()
-     * 
+     * @see \ArrayAccess::offsetSet()
+     *
+     * @param mixed $offset
+     * @param mixed $value
+     *
+     * @return void
      * @throws \RuntimeException
      */
     public function offsetSet($offset, $value) {
-        throw new \RuntimeException('Environment data is read-only. \Maleficarum\Environment\Server::offsetSet()');
+        throw new \RuntimeException(sprintf('Environment data is read-only. \%s::offsetSet()', static::class));
+    }
+
+    /**
+     * This method will always throw a RuntimeException. It's not allowed to unset env data from the execution context.
+     *
+     * @see \ArrayAccess::offsetUnset()
+     *
+     * @param mixed $offset
+     *
+     * @return void
+     * @throws \RuntimeException
+     */
+    public function offsetUnset($offset) {
+        throw new \RuntimeException(sprintf('Environment data is read-only. \%s::offsetUnset()', static::class));
     }
     /* ------------------------------------ ArrayAccess methods END ------------------------------------ */
 }

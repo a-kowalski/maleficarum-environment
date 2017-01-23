@@ -18,7 +18,7 @@ trait Dependant
     /**
      * Get the currently set environment object.
      *
-     * @return \Maleficarum\Environment\Server
+     * @return \Maleficarum\Environment\Server|null
      */
     public function getEnvironment() {
         return $this->environment;
