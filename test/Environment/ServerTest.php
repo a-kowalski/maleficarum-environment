@@ -1,10 +1,11 @@
 <?php
 declare(strict_types = 1);
+
 /**
  * Tests for the \Maleficarum\Environment\Server class.
  */
 
-namespace Test\Maleficarum\Environment;
+namespace Maleficarum\Environment\Tests;
 
 class ServerTest extends \PHPUnit\Framework\TestCase
 {
