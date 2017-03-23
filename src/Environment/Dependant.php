@@ -13,7 +13,7 @@ trait Dependant {
     /**
      * Internal storage for the environment object.
      *
-     * @var \Maleficarum\Environment\Server
+     * @var \Maleficarum\Environment\Server\Server
      */
     protected $environment = null;
 
@@ -24,7 +24,7 @@ trait Dependant {
     /**
      * Get the currently set environment object.
      *
-     * @return \Maleficarum\Environment\Server|null
+     * @return \Maleficarum\Environment\Server\Server
      */
     public function getEnvironment() {
         return $this->environment;
@@ -33,10 +33,10 @@ trait Dependant {
     /**
      * Set environment.
      *
-     * @param \Maleficarum\Environment\Server $environment
+     * @param \Maleficarum\Environment\Server\Server $environment
      * @return \Maleficarum\Environment\Dependant
      */
-    public function setEnvironment(\Maleficarum\Environment\Server $environment) {
+    public function setEnvironment(\Maleficarum\Environment\Server\Server $environment) {
         $this->environment = $environment;
 
         return $this;
