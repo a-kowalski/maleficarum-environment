@@ -1,14 +1,15 @@
 <?php
 /**
  * This class is responsible for providing a wrapper access to the $_SERVER superglobal.
- *
- * @implements \ArrayAccess
  */
+declare (strict_types=1);
 
-namespace Maleficarum\Environment;
+namespace Maleficarum\Environment\Server;
 
-class Server implements \ArrayAccess
-{
+class Server implements \ArrayAccess {
+    
+    /* ------------------------------------ Class Property START --------------------------------------- */
+    
     /**
      * Internal storage for environmental variables.
      *
@@ -16,7 +17,10 @@ class Server implements \ArrayAccess
      */
     private $data = [];
 
+    /* ------------------------------------ Class Property END ----------------------------------------- */
+
     /* ------------------------------------ Magic methods START ---------------------------------------- */
+    
     /**
      * Create a new Server object.
      *
@@ -25,14 +29,15 @@ class Server implements \ArrayAccess
     public function __construct(array $serverData) {
         $this->data = $serverData;
     }
+    
     /* ------------------------------------ Magic methods END ------------------------------------------ */
 
-    /* ------------------------------------ Server methods START --------------------------------------- */
+    /* ------------------------------------ Class Methods START ---------------------------------------- */
+    
     /**
      * This method tries to return set environment for both CLI and FPM context
      *
      * @return string
-     *
      * @throws \RuntimeException
      */
     public function getCurrentEnvironment() : string {
@@ -42,30 +47,20 @@ class Server implements \ArrayAccess
 
         return $this->data['APPLICATION_ENVIRONMENT'];
     }
-    /* ------------------------------------ Server methods END ----------------------------------------- */
+    
+    /* ------------------------------------ Class Methods END ------------------------------------------ */
 
     /* ------------------------------------ ArrayAccess methods START ---------------------------------- */
+    
     /**
-     * Checks if the given key exists in the array
-     *
      * @see \ArrayAccess::offsetExists()
-     *
-     * @param mixed $offset
-     *
-     * @return bool
      */
     public function offsetExists($offset) : bool {
         return array_key_exists($offset, $this->data);
     }
 
     /**
-     * Gets the element with the given key
-     *
      * @see \ArrayAccess::offsetGet()
-     *
-     * @param mixed $offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset) {
         if (!$this->offsetExists($offset)) {
@@ -76,32 +71,18 @@ class Server implements \ArrayAccess
     }
 
     /**
-     * This method will always throw a RuntimeException. It's not allowed to set env data from the execution context.
-     *
      * @see \ArrayAccess::offsetSet()
-     *
-     * @param mixed $offset
-     * @param mixed $value
-     *
-     * @return void
-     * @throws \RuntimeException
      */
     public function offsetSet($offset, $value) {
         throw new \RuntimeException(sprintf('Environment data is read-only. \%s::offsetSet()', static::class));
     }
 
     /**
-     * This method will always throw a RuntimeException. It's not allowed to unset env data from the execution context.
-     *
      * @see \ArrayAccess::offsetUnset()
-     *
-     * @param mixed $offset
-     *
-     * @return void
-     * @throws \RuntimeException
      */
     public function offsetUnset($offset) {
         throw new \RuntimeException(sprintf('Environment data is read-only. \%s::offsetUnset()', static::class));
     }
+    
     /* ------------------------------------ ArrayAccess methods END ------------------------------------ */
 }

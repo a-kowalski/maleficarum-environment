@@ -1,9 +1,14 @@
 # Change Log
 This is the Maleficarum Environment component implementation. 
 
+## [3.0.0] - 2017-03-23
+### Changed
+- Changed internal structure.
+- Added default package initializer.
+
 ## [2.0.1] - 2017-02-15
 ### Added
-- Add tests
+- Add tests.
 
 ## [2.0.0] - 2017-01-23
 ### Changed
