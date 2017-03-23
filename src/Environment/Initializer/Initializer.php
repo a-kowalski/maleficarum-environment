@@ -11,7 +11,7 @@ class Initializer {
 	/* ------------------------------------ Class Methods START ---------------------------------------- */
 	
 	/**
-	 * This will initialize the time profiler.
+	 * This method will initialize the entire package.
 	 * @return string
 	 */
 	static public function initialize(array $opts = []) : string {
