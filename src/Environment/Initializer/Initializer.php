@@ -20,7 +20,7 @@ class Initializer {
 		is_array($builders) or $builders = [];
 		if (!isset($builders['environment']['skip'])) {
 			\Maleficarum\Ioc\Container::register('Maleficarum\Environment\Server\Server', function () {
-				return (new \Maleficarum\Environment\Server($_SERVER));
+				return (new \Maleficarum\Environment\Server\Server($_SERVER));
 			});
 		}
 
