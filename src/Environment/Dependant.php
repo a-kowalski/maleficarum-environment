@@ -7,9 +7,8 @@ declare (strict_types=1);
 namespace Maleficarum\Environment;
 
 trait Dependant {
-    
     /* ------------------------------------ Class Property START --------------------------------------- */
-    
+
     /**
      * Internal storage for the environment object.
      *
@@ -18,15 +17,15 @@ trait Dependant {
     protected $environment = null;
 
     /* ------------------------------------ Class Property END ----------------------------------------- */
-    
+
     /* ------------------------------------ Class Methods START ---------------------------------------- */
-    
+
     /**
      * Get the currently set environment object.
      *
-     * @return \Maleficarum\Environment\Server\Server
+     * @return \Maleficarum\Environment\Server\Server|null
      */
-    public function getEnvironment() {
+    public function getEnvironment(): ?\Maleficarum\Environment\Server\Server {
         return $this->environment;
     }
 
@@ -34,6 +33,7 @@ trait Dependant {
      * Set environment.
      *
      * @param \Maleficarum\Environment\Server\Server $environment
+     *
      * @return \Maleficarum\Environment\Dependant
      */
     public function setEnvironment(\Maleficarum\Environment\Server\Server $environment) {
@@ -52,6 +52,6 @@ trait Dependant {
 
         return $this;
     }
-    
+
     /* ------------------------------------ Class Methods END ------------------------------------------ */
 }

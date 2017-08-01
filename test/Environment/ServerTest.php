@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 
 /**
- * Tests for the \Maleficarum\Environment\Server class.
+ * Tests for the \Maleficarum\Environment\Server\Server class.
  */
 
 namespace Maleficarum\Environment\Tests;
@@ -24,21 +24,21 @@ class ServerTest extends \PHPUnit\Framework\TestCase
      * @expectedException \RuntimeException
      */
     public function testGetCurrentEnvironmentFailure() {
-        (new \Maleficarum\Environment\Server([]))->getCurrentEnvironment();
+        (new \Maleficarum\Environment\Server\Server([]))->getCurrentEnvironment();
     }
 
     public function testGetCurrentEnvironmentSuccess() {
-        $this->assertSame('local', (new \Maleficarum\Environment\Server($this->envDataMock))->getCurrentEnvironment());
+        $this->assertSame('local', (new \Maleficarum\Environment\Server\Server($this->envDataMock))->getCurrentEnvironment());
     }
     /* ------------------------------------ Method: getCurrentEnvironment END -------------------------- */
 
     /* ------------------------------------ Method: offsetExists START --------------------------------- */
     public function testOffsetExistsSuccess() {
-        $this->assertTrue((new \Maleficarum\Environment\Server($this->envDataMock))->offsetExists('testKey'));
+        $this->assertTrue((new \Maleficarum\Environment\Server\Server($this->envDataMock))->offsetExists('testKey'));
     }
 
     public function testOffsetExistsFailure() {
-        $this->assertFalse((new \Maleficarum\Environment\Server($this->envDataMock))->offsetExists(uniqid()));
+        $this->assertFalse((new \Maleficarum\Environment\Server\Server($this->envDataMock))->offsetExists(uniqid()));
     }
     /* ------------------------------------ Method: offsetExists END ----------------------------------- */
 
@@ -47,17 +47,17 @@ class ServerTest extends \PHPUnit\Framework\TestCase
      * @expectedException \RuntimeException
      */
     public function testOffsetUnsetException() {
-        (new \Maleficarum\Environment\Server($this->envDataMock))->offsetUnset(uniqid());
+        (new \Maleficarum\Environment\Server\Server($this->envDataMock))->offsetUnset(uniqid());
     }
     /* ------------------------------------ Method: offsetUnset END ------------------------------------ */
 
     /* ------------------------------------ Method: offsetGet START ------------------------------------ */
     public function testOffsetGetExisting() {
-        $this->assertSame('testValue', (new \Maleficarum\Environment\Server($this->envDataMock))->offsetGet('testKey'));
+        $this->assertSame('testValue', (new \Maleficarum\Environment\Server\Server($this->envDataMock))->offsetGet('testKey'));
     }
 
     public function testOffsetGetNonExisting() {
-        $this->assertNull((new \Maleficarum\Environment\Server($this->envDataMock))->offsetGet(uniqid()));
+        $this->assertNull((new \Maleficarum\Environment\Server\Server($this->envDataMock))->offsetGet(uniqid()));
     }
     /* ------------------------------------ Method: offsetGet END -------------------------------------- */
 
@@ -66,7 +66,7 @@ class ServerTest extends \PHPUnit\Framework\TestCase
      * @expectedException \RuntimeException
      */
     public function testOffsetSetException() {
-        (new \Maleficarum\Environment\Server($this->envDataMock))->offsetSet(uniqid(), uniqid());
+        (new \Maleficarum\Environment\Server\Server($this->envDataMock))->offsetSet(uniqid(), uniqid());
     }
     /* ------------------------------------ Method: offsetSet END -------------------------------------- */
 }
