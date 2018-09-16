@@ -3,21 +3,15 @@
     "license": "proprietary",
     "description": "Maleficarum environment component",
     "require": {
-        "php": "^7.1"
+        "php": "^7.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.0",
-        "maleficarum/ioc": "^2.0"
+        "phpunit/phpunit": "^7.3",
+        "maleficarum/ioc": "^3.0"
     },
     "autoload": {
         "psr-4": {
             "Maleficarum\\Environment\\": "src/Environment/"
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:pharaun13/maleficarum-ioc.git"
-        }
-    ]
+    }
 }

@@ -1,6 +1,12 @@
 # Change Log
 This is the Maleficarum Environment component implementation. 
 
+## [5.0.0] - 2018-09-17 
+### Changed 
+- Upgraded IoC component to version 3.x 
+- Upgraded phpunit version 
+- Removed repositories section from composer file 
+
 ## [4.0.0] - 2017-08-01
 ### Changed
 - Make use of nullable types provided in PHP 7.1 (http://php.net/manual/en/migration71.new-features.php)
