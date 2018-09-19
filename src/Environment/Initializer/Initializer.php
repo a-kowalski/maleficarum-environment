@@ -21,14 +21,14 @@ class Initializer {
         $builders = $opts['builders'] ?? [];
         is_array($builders) or $builders = [];
         if (!isset($builders['environment']['skip'])) {
-            \Maleficarum\Ioc\Container::register('Maleficarum\Environment\Server\Server', function () {
+            \Maleficarum\Ioc\Container::registerBuilder('Maleficarum\Environment\Server\Server', function () {
                 return (new \Maleficarum\Environment\Server\Server($_SERVER));
             });
         }
 
         /* @var $environment \Maleficarum\Environment\Server */
         $environment = \Maleficarum\Ioc\Container::get('Maleficarum\Environment\Server\Server');
-        \Maleficarum\Ioc\Container::registerDependency('Maleficarum\Environment', $environment);
+        \Maleficarum\Ioc\Container::registerShare('Maleficarum\Environment', $environment);
         error_reporting(-1);
 
         return __METHOD__;
